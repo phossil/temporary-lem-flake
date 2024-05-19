@@ -14,7 +14,7 @@ stdenvNoCC.mkDerivation rec {
   pname = "lem";
   version = "2.2.0";
 
-  src = ./artifact;
+  src = ./artifacts;
 
   strictDeps = true;
 
