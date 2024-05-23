@@ -1,5 +1,6 @@
 { lib
 , stdenvNoCC
+, fetchgit
 , libffi
 , SDL2
 , SDL2_ttf
@@ -14,7 +15,16 @@ stdenvNoCC.mkDerivation rec {
   pname = "lem";
   version = "2.2.0";
 
-  src = ./artifacts;
+  # if you thought the existence of this flake was stupid,
+  # wait until you see this 
+  src = fetchgit {
+    url = "https://github.com/phossil/temporary-lem-flake/";
+    # we will be using a specifc branch (binary-x86_64-linux) because
+    # nix flakes can't seem to download a git repo with lfs ??
+    rev = "4239a7126ab06fc6330d0e0db69b5346adf44954";
+    hash = "sha256-EAE6HEXym6MqN1v/Za98Tmg/9qcFlswoTXwtYsojT8w=";
+    fetchLFS = true;
+  };
 
   strictDeps = true;
 
